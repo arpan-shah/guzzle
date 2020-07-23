@@ -1,0 +1,9 @@
+version: 1
+context_stage_mappings:
+- period: 12345
+  context: {}
+  stages:
+  - name: "FND"
+  - name: "CALC"
+  stage_pairs:
+  - "FND,STG"

@@ -1,0 +1,18 @@
+version: 1
+job:
+  type: "housekeeping"
+housekeeping:
+  operation: "delete"
+  properties: {}
+  reference_point:
+    reference_type: "current_time"
+  retention_strategies:
+  - strict_retention_period_end: false
+    day_of_week: 1
+    strict_retention_grain: []
+    partitions:
+    - arpan: "2"
+    retention_strategy: "2d, *w, *m, *q, *y"
+  - partitions: []
+  - partitions: []
+    retention_strategy: "2d, *w, *m, *q, *y"

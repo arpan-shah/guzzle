@@ -1,0 +1,9 @@
+description: ""
+version: 1
+properties: {}
+jobs:
+- "clone_googleanalytics"
+- jdbc_demo:
+    job_parameters:
+      aaa: "aaac"
+parallel: 1

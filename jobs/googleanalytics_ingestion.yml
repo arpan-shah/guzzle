@@ -1,0 +1,24 @@
+source:
+  endpoint: "lo_hive"
+  incremental_load:
+    watermarking_columns:
+    - value: "abc"
+    - value: "abcd"
+  properties:
+    table: "arpan"
+job:
+  type: "ingestion"
+version: 1
+schema:
+  strict_schema_check: true
+  schema_derivation_strategy: "source"
+  discard: true
+  columns:
+  - nullable:
+      value: true
+xyz: "abcd"
+target:
+  endpoint: "lo_hive"
+  properties:
+    auto_create_table: false
+  operation: "append"

@@ -1,0 +1,23 @@
+source:
+  endpoint: "lo_jdbc"
+job:
+  type: "ingestion"
+version: 1
+schema:
+  strict_schema_check: true
+  schema_derivation_strategy: "schema"
+  columns:
+  - name: "id"
+    primary_key:
+      value: true
+    data_type:
+      value: "INT"
+    nullable:
+      value: false
+  - name: "age"
+    nullable:
+      value: false
+target:
+  endpoint: "lo_jdbc"
+  properties:
+    table: "users"

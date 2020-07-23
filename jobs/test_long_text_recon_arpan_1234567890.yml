@@ -1,0 +1,5 @@
+version: 1
+job:
+  type: "recon"
+source:
+  endpoint: "lo_hive"

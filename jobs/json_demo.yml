@@ -1,0 +1,27 @@
+source:
+  endpoint: "lo_jdbc"
+  properties:
+    table: "a"
+job:
+  type: "ingestion"
+version: 1
+schema:
+  strict_schema_check: true
+  schema_derivation_strategy: "target"
+  columns:
+  - name: "id"
+    primary_key:
+      value: true
+    data_type:
+      value: "INT"
+    nullable:
+      value: false
+  - name: "age"
+    nullable:
+      value: false
+  discard: true
+target:
+  endpoint: "lo_hive"
+  properties:
+    auto_create_table: true
+  operation: "append"

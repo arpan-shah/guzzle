@@ -1,0 +1,67 @@
+schema_validation:
+  to_invalid: []
+  to: []
+  schema:
+    filter_sql: "id > 5"
+    columns:
+      id:
+        data_type:
+          value: "INT"
+      name:
+        data_type:
+          value: "VARCHAR(5)"
+        nullable:
+          value: false
+      age:
+        nullable:
+          value: false
+  type: "validate_schema"
+  to_valid:
+  - "custom_mapper"
+store_data:
+  type: "target"
+  endpoint: "lo_phoenix"
+  properties:
+    table: "sample"
+custom_sql:
+  type: "transform_sql"
+  sources:
+    users:
+      endpoint: "lo_hive"
+      properties:
+        table: "users"
+  transform_sql: "select p.id, p.name, p.custom1 department, u.created_time from custom_sql p left join users u on p.id = u.id"
+  to:
+  - "store_data"
+  - "show_data"
+job:
+  type: "streaming"
+show_data:
+  type: "show"
+version: 1
+custom_mapper:
+  type: "partition_mapper"
+  class: "com.test.TestPartitionMapper"
+  columns:
+  - "id"
+  - "name"
+  - "custom1"
+  - "custom2"
+  to:
+  - "custom_sql"
+receive_data:
+  batch_duration: 10
+  to:
+  - "show_data"
+  - "schema_validation"
+  properties:
+    topics: "test"
+    format: "delimited"
+    format_properties:
+      column_delimiter: ","
+  columns:
+  - "id"
+  - "name"
+  - "age"
+  endpoint: "lo_kafka"
+  type: "source"

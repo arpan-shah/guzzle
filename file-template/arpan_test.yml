@@ -1,0 +1,7 @@
+version: 1
+config:
+  destination_directory: "1"
+  naming_convention: "11"
+  staging_directory: "2"
+  overwrite_same_file: true
+  validation_job_name: "googleanalytics_ingestion"
